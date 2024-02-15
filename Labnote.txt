@@ -1,0 +1,11 @@
+Day 1 environment setup    
+_________________________________________________  
+                                                   
+hYPERVISOR                 
+GNS3 ALL IN ONE  - DEFAULT 
+ VIRTUAL BOX               
+  KALI - ADD               
+  GNS3 VM - IMPORT           
+  Resource: David 
+  Checksum for the file corruption on the 
+   cert util

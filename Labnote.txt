@@ -10,3 +10,20 @@ GNS3 ALL IN ONE  - DEFAULT
   Checksum for the file corruption on the 
    cert util
   Virtual tx in BIOS
+
+  ___________________________________________________
+  David Bombal - video resource
+  to add image files 
+  to add image 
+   - edit > preference > IOS router 
+   - edit > preference > IOS router > add the file > check the box 
+  when creating VM caused error and we used trouble shooting steps of
+   - Check virtualization is enabled Bios
+   - Use the command
+
+   create a lan network 
+    - add 2 pcs ip 192.168.10.10/24 ip 192.168.10.20/24
+    - 1 switch 
+    - 1 router gateway 192.168.10.1/24
+    - make 2 vlam for 2 pc and 
+    

@@ -28,4 +28,21 @@ GNS3 ALL IN ONE  - DEFAULT
             vlan 20: port int fa1/2
     - 1 router gateway 192.168.10.1/24 - int fa0/0
     - make 2 vlam for 2 pc and 
-    
+    ____________________________________________________________
+    Layer 2 security
+    Sniffing : Tcp dump
+    sudo tcpdump : all packets going out and comming in 
+    sudo tcpdump -i : interface
+    sudo tcpdump -i eth0 dest host 10.0.1.2 : where dest is specific ip
+    sudo tcpdump -i eth0 src host 10.0.1.2 : where source is spcific
+    sudo tcpdump -i eth0 port PORT_NUM and IP IP_Num
+    sudo tcpdump -i eth0 ip and 'len > 50' 
+    sudo tcpdump -i eth0 -w 123456789.pcap  : write dump to 123456789
+    ___________________________________________________________________
+    when adding kali as a pc in GNS3 network i encountered the following problems
+    1 when creating the link it said : already used as "bridged" we allowed bridged network 
+        to enable us to use the internet from the virtual machine so we cannot disable that port 
+        I changed the pc's network adabter to use any adabter by double clicking and going to 
+        network tab and change adabter setting
+    2 when starting the pc I encountered a problem saying state was not saved from GNS3 and I went 
+        to VirtualBox and removed the state of kali and it worked

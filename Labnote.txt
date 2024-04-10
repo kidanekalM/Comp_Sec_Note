@@ -46,3 +46,45 @@ GNS3 ALL IN ONE  - DEFAULT
         network tab and change adabter setting
     2 when starting the pc I encountered a problem saying state was not saved from GNS3 and I went 
         to VirtualBox and removed the state of kali and it worked
+__________________________________________________________________________________________________________
+lab after mid
+__________________________________________________________________________________________________________
+Use the john the ripper(managed list )
+ - Rule list - substitute E-3, a - @
+             - append char
+John The Ripper 
+ - has a WordList and Rule List 
+ - apply the rule then hash
+ -sudo john - help
+ -man john - description ...
+ - press q or ^c to exit 
+ -create user
+  - sudo adduser 'username'
+   - --allow-bad-names or lowercase
+ - to check the account - cat /etc/passwd  
+ - see passowrds shadowed sudo cat /etc/shadow 
+ - sudo unshadow /etc/passwd /etc/shadow > mypass.txt
+ - cat mypass.txt
+ - sudo john --wordlsit=/usr/share/password.lst --format=crypt mypass.txt
+ - /usr/share/wordlists sudo gzip rockyou.txt.gz
+ - sudo john --show /etc/shadow
+
+___________________________________________________
+DHCP
+                           VPC
+                            |
+                            |
+DHCPServer-------------Switch
+                            |
+                            |
+                          Kali
+
+On Dhcp server/router - ip 192.168.10.1 /25 no shutdown
+> Ip dhcp pool snoopserver
+> network 192.168.10.0 255.255.255.0
+> default router 192.168.10.1
+> lease infinite
+> exit
+                   
+
+ 

@@ -87,4 +87,18 @@ On Dhcp server/router - ip 192.168.10.1 /25 no shutdown
 > exit
                    
 
- 
+ ____________________________________________________________
+ Authentication Authorization Access Control Accounting
+  local 
+  install tacacs and radius
+  centralized AAA TACACS and Radius
+  for LAN do AAA on Router
+
+ Create a group - sudo groupadd cyberstud
+ sudo adduser cs1
+ sudo usermod -g group user
+ ls -l /home/
+ sudo su -l cs1 --change the 
+
+ ROuter------------------Kali
+ ip 192.168.10.10        

@@ -102,3 +102,34 @@ On Dhcp server/router - ip 192.168.10.1 /25 no shutdown
 
  ROuter------------------Kali
  ip 192.168.10.10        
+ __________________________________________________________________________________________________________
+ 
+ add AAA appliance 
+ 122.0 122.255
+ create 
+change  interface eth0 inet static
+#       address 192.168.0.2
+#       netmask 255.255.255.0
+#       gateway 192.168.0.1
+#       up echo nameserver 192.168.0.1 > /etc/resolv.conf
+
+uncomment then C^O
+#auto eth0
+#iface eth0 inet static
+#       address 192.168.122.222
+#       netmask 255.255.255.0
+#       gateway 192.168.122.1
+#       up echo nameserver 192.168.122.1 > /etc/resolv.conf
+
+
+Access Control List
+ - Standard
+ - Extended
+ access-list <1-99> deny (permit) host(network) 
+ 
+ BYOD - bring your own dev
+ Standards
+ Ploicy
+ Procedure - guideline
+ syntax > access-list 1 deny host 192.168.10.10
+

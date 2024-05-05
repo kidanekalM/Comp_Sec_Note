@@ -133,3 +133,145 @@ Access Control List
  Procedure - guideline
  syntax > access-list 1 deny host 192.168.10.10
 
+line v t y 04 
+password cisco
+enable password cisco
+__________________________________________________________________________________________________________
+
+ROUTER 1
+conf t
+no ip domain lookup
+int fa 0/1
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+int fa 0/0
+ip address 10.1.1.1 255.255.255.252
+no shutdown
+exit
+router ospf 101
+network 192.168.2.0 0.0.0.255 area 0
+network 10.1.1.0 0.0.0.3 area 0
+exit
+-----------------------------------
+exit
+conf t
+end
+conf t
+security passwords min-length 10
+username admin01 secret admin01pass
+enable secret cisco12345
+
+configure terminal
+line console 0
+login local
+exec-timeout 5
+logging synchronous
+exit
+exit
+
+
+
+
+ROUTER 2
+conf t
+no ip domain lookup
+int fa 0/0
+ip address 10.1.1.2 255.255.255.252
+no shutdown
+int fa 0/1
+ip address 10.2.2.2 255.255.255.252
+no shutdown
+exit
+router ospf 101
+network 10.2.2.0 0.0.0.3 area 0
+network 10.1.1.0 0.0.0.3 area 0
+
+
+ROUTER 3
+conf t
+no ip domain lookup
+int fa 0/1
+ip address 192.168.3.1 255.255.255.0
+no shutdown
+int fa 0/0
+ip address 10.2.2.1 255.255.255.252
+no shutdown
+exit
+router ospf 101
+network 192.168.3.0 0.0.0.255 area 0
+network 10.2.2.0 0.0.0.3 area 0
+exit
+
+exit 
+conf t
+security passwords min-length 10
+enable secret cisco12345
+username admin01 secret admin01pass
+
+
+exit 
+
+configure terminal
+line console 0
+login local
+exec-timeout 5
+logging synchronous
+exit
+exit
+
+PC-A
+ip 192.168.2.3 255.255.255.0 192.168.2.1
+PC-C 
+ip 192.168.3.3 255.255.255.0 192.168.3.1
+
+
+____________________________________________________________
+
+Crypto Map  R1
+exit
+conf t 
+crypto map CMAP 10 ipsec-isakmp
+match address 101
+set peer 10.2.2.1 
+set pfs group2
+set transform-set 50
+set security-association lifetime seconds 900
+exit
+interface G0/0/0
+crypto map CMAP
+end
+
+Crypto Map R3
+exit
+conf t 
+crypto map CMAP 10 ipsec-isakmp
+match address 101
+set peer 10.1.1.1
+set pfs group2
+set transform-set 50
+set security-association lifetime seconds 900
+exit
+interface G0/0/1
+crypto map CMAP
+end
+
+
+ISA KMP
+copy running-config startup-config
+Configure the same policy on R3.
+crypto isakmp policy 10
+hash sha
+authentication pre-share
+group 2
+encryption aes 256
+end
+
+
+transform set
+crypto ipsec transform-set R1-R3 50 esp-aes 256 esp-sha-hmac
+access-list 101 permit ip 192.168.2.0 0.0.0.255 192.168.3.0 0.0.0.255
+access-list 101 permit ip 192.168.3.0 0.0.0.255 192.168.2.0 0.0.0.255
+
+
+ow
+show crypto ipsec transform-set
